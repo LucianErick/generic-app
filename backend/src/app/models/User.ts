@@ -29,14 +29,23 @@ class User {
   @Column()
   admin: boolean;
 
+  @Column()
+  name: string;
+
+  @Column()
+  address: string;
+
+  @Column()
+  phone: string;
+
+  @CreateDateColumn()
+  created_at: Date;
+
   @BeforeInsert()
   @BeforeUpdate()
   hashPassword() {
     this.password = bcrypt.hashSync(this.password, 8);
   }
-
-  @CreateDateColumn()
-  created_at: Date;
 
   constructor() {
     if (!this.id) {

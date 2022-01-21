@@ -14,14 +14,13 @@ export const Container = styled.div`
 export const Text = styled.h3`
   width: 100%;
   text-align: start;
-  margin: 0.5rem 0 0 0;
   font-weight: 600;
   font-size: 1.15rem;
   color: #008dd6;
-  margin-top: 0;
+  margin-top: 1rem;
 `;
 
-export const Form = styled.div`
+export const Form = styled.form`
   width: 100%;
 
   display: grid;
@@ -53,40 +52,6 @@ export const Form = styled.div`
 
     input {
       width: 100%;
-    }
-  }
-
-  .button {
-    grid-row-start: 4;
-    grid-column-start: 1;
-    grid-column-end: 3;
-    display: flex;
-    justify-content: center;
-
-    button {
-      width: 50%;
-      padding: 12px;
-      border: none;
-      outline: none;
-      color: #fff;
-      border-radius: 16px;
-      background-image: linear-gradient(
-        75deg,
-        #00528c,
-        #008dd6,
-        #008dd6,
-        #00528c
-      );
-      background-size: 200%;
-      background-position: left;
-      font-weight: 500;
-
-      transition: 300ms background-position ease-in-out;
-      letter-spacing: 0.05em;
-
-      &:hover {
-        background-position: right;
-      }
     }
   }
 
@@ -133,6 +98,66 @@ export const Form = styled.div`
 
       button {
         width: 100%;
+      }
+    }
+  }
+`;
+
+export const Buttons = styled.div`
+  width: 100%;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  display: flex;
+  justify-content: center;
+
+  .back {
+    padding-right: 1rem;
+    display: flex;
+    button {
+      color: #222;
+      font-weight: 500;
+      border: none;
+      outline: none;
+      background: none;
+      font-size: 0.5rem;
+      transition: all ease 0.2s;
+      &:hover {
+        color: #00528c;
+      }
+    }
+  }
+
+  .button {
+    width: 80%;
+    grid-row-start: 4;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    display: flex;
+    justify-content: end;
+
+    button {
+      width: 50%;
+      padding: 12px;
+      border: none;
+      outline: none;
+      color: #fff;
+      border-radius: 24px;
+      background-image: linear-gradient(
+        75deg,
+        #00528c,
+        #008dd6,
+        #008dd6,
+        #00528c
+      );
+      background-size: 200%;
+      background-position: left;
+      font-weight: 500;
+
+      transition: 300ms background-position ease-in-out;
+      letter-spacing: 0.05em;
+
+      &:hover {
+        background-position: right;
       }
     }
   }

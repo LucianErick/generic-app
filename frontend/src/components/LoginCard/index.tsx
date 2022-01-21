@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import * as S from "./styles";
 
 export const LoginCard = () => {
+  const navigate = useNavigate();
   return (
     <S.Container>
       <S.Welcome>Welcome back!</S.Welcome>
@@ -26,7 +28,7 @@ export const LoginCard = () => {
         </S.Button>
         <S.Signup>
           <span>Don't have account?</span>
-          <button>Sign up</button>
+          <button onClick={() => navigate("/register")}>Sign up</button>
         </S.Signup>
       </S.FormContainer>
     </S.Container>

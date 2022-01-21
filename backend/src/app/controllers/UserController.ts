@@ -1,28 +1,32 @@
-import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
-import { User } from '../models/User';
+import { Request, Response } from "express";
 
+import { UserService } from "../services/UserService";
+
+import getErrorMessage from "../helpers/errorMessage";
 class UserController {
+  index(req: Request, res: Response) {
+    return res.send({ userId: req.userId });
+  }
 
-    index(req: Request, res: Response) {
-        return res.send({ userId: req.userId });
+  async store(req: Request, res: Response) {
+    const { email, password, admin, name, phone, address } = req.body;
+    const userService = new UserService();
+    try {
+      const user = await userService.createUser({
+        email,
+        password,
+        admin,
+        name,
+        phone,
+        address,
+      });
+      return res.json(user);
+    } catch (err) {
+      return res.status(409).json({
+        message: getErrorMessage(err),
+      });
     }
-
-    async store(req: Request, res: Response) {
-
-        const repository = getRepository(User);
-        const { email, password, admin } = req.body;
-
-        const userExists = await repository.findOne({ where: { email } });
-        if (userExists) {
-            return res.sendStatus(409);
-        }
-
-        const user = repository.create({ email, password, admin });
-        await repository.save(user);
-
-        return res.json(user);
-    }
+  }
 }
 
 export default new UserController();

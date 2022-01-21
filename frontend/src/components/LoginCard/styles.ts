@@ -2,16 +2,11 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   background-color: #fff;
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 2.5rem;
   margin: 0 1rem;
   width: fit-content;
   min-width: 300px;
-  -webkit-border-top-left-radius: 81px;
-  -webkit-border-bottom-right-radius: 80px;
-  -moz-border-radius-topleft: 81px;
-  -moz-border-radius-bottomright: 80px;
-  border-top-left-radius: 81px;
-  border-bottom-right-radius: 80px;
+  border-radius: 20px 80px 20px 80px;
   -webkit-box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.25);
   box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.25);
 
@@ -40,7 +35,6 @@ export const Input = styled.div`
   display: flex;
   width: 100%;
   margin-bottom: 0.5rem;
-  padding: 0.1rem;
   height: 32px;
 
   input {
@@ -48,7 +42,7 @@ export const Input = styled.div`
     border: none;
     border-bottom: 1px solid #c6c6c6;
     outline: none;
-    padding-left: 0.15rem;
+    padding: 0.1rem 0.2rem;
     transition: all ease 0.2s;
 
     &:focus {
