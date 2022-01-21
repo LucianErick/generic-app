@@ -6,29 +6,40 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
+import { useAuth } from "./context/auth";
+import { sign } from "crypto";
+import { useEffect } from "react";
 
 function App() {
+  const auth = useAuth();
+
+  const loginPage = () => {
+    console.log(auth.signed);
+  };
+
+  useEffect(() => {
+    loginPage();
+  }, []);
+
   return (
-    <div className="App">
-      <BrowserRouter>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          style={{ fontSize: "16px" }}
-        />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<SignUp />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        style={{ fontSize: "16px" }}
+      />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<SignUp />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

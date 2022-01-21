@@ -14,3 +14,11 @@ export type CreateUser = {
   address?: string;
   password: string;
 };
+
+export type UserAuth = {
+  id: string;
+  email: string;
+  name: string;
+  address: string;
+  phone: string;
+};

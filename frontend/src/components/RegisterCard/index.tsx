@@ -1,16 +1,9 @@
-import {
-  ChangeEvent,
-  FormEvent,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from "react";
+import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { saveUser } from "../../services/api";
 import {
   validateEmail,
-  validatePassword,
   validatePhoneNumber,
 } from "../../utils/validations";
 import * as S from "./styles";
@@ -43,7 +36,7 @@ export const RegisterCard = () => {
     address: string
   ) => {
     try {
-      const statusRequest = await saveUser({
+      await saveUser({
         name,
         email,
         password,
@@ -72,8 +65,6 @@ export const RegisterCard = () => {
       ? await handleSave(name, email, password, phone, address)
       : toast.error("Please, check your infos and try again later.");
   };
-
-  useEffect(() => {}, []);
 
   return (
     <S.Container>
