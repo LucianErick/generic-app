@@ -16,6 +16,7 @@ interface AuthContextData {
   signed: boolean;
   user: User | null;
   Login(email: string, password: string, admin: boolean): Promise<void>;
+  Logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
@@ -29,8 +30,15 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     localStorage.setItem("@App:user", JSON.stringify(response.user));
     localStorage.setItem("@App:token", response.token);
-    api.defaults.headers.common["Authorization"] = response.token;
+    api.defaults.headers.common["Authorization"] = `Bearer ${response.token}`;
   };
+
+  const Logout = async () => {
+    setUser(null);
+
+    sessionStorage.removeItem("@App:user")
+    sessionStorage.removeItem("@App:token")
+  }
 
   useEffect(() => {
     const storagedUser = localStorage.getItem("@App:user");
@@ -43,7 +51,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signed: Boolean(user), Login, user }}>
+    <AuthContext.Provider value={{ signed: Boolean(user), Login, Logout, user }}>
       {children}
     </AuthContext.Provider>
   );

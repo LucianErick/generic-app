@@ -2,10 +2,7 @@ import { ChangeEvent, SyntheticEvent, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { saveUser } from "../../services/api";
-import {
-  validateEmail,
-  validatePhoneNumber,
-} from "../../utils/validations";
+import { validateEmail, validatePhoneNumber } from "../../utils/validations";
 import * as S from "./styles";
 
 export const RegisterCard = () => {
@@ -44,7 +41,7 @@ export const RegisterCard = () => {
         address,
       });
       toast.success("Success registration");
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       toast.error(`Email already exists.`);
     }
@@ -101,7 +98,7 @@ export const RegisterCard = () => {
         </div>
         <S.Buttons>
           <div className="back">
-            <button onClick={() => navigate("/login")}>Back</button>
+            <button onClick={() => navigate("/")}>Back</button>
           </div>
           <div className="button">
             <button type="submit">Register</button>

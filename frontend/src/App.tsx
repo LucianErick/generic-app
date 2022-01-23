@@ -1,28 +1,12 @@
-import "./App.css";
-
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { Login } from "./pages/Login";
-import { SignUp } from "./pages/SignUp";
-import { useAuth } from "./context/auth";
-import { sign } from "crypto";
-import { useEffect } from "react";
+import "./App.css";
+import { Routes } from "./routes";
 
 function App() {
-  const auth = useAuth();
-
-  const loginPage = () => {
-    console.log(auth.signed);
-  };
-
-  useEffect(() => {
-    loginPage();
-  }, []);
-
   return (
-    <BrowserRouter>
+    <>
       <ToastContainer
         position="top-right"
         autoClose={5000}
@@ -35,11 +19,8 @@ function App() {
         pauseOnHover
         style={{ fontSize: "16px" }}
       />
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<SignUp />} />
-      </Routes>
-    </BrowserRouter>
+      <Routes />
+    </>
   );
 }
 
