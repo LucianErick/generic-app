@@ -94,7 +94,7 @@ export const RegisterCard = () => {
           />
         </div>
         <div className="address">
-          <input type="text" id="address" placeholder="Address" required />
+          <input type="text" id="address" placeholder="Address" />
         </div>
         <S.Buttons>
           <div className="back">

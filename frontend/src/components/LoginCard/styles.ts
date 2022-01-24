@@ -61,12 +61,6 @@ export const IsAdmin = styled.div`
   }
 `;
 
-export const RememberMe = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 export const Signup = styled.div`
   width: 100%;
   margin-top: 0.5rem;
@@ -99,7 +93,7 @@ export const Signup = styled.div`
 
 export const OptionButtonGroup = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
 `;
 
 export const Button = styled.div`

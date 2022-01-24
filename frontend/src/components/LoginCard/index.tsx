@@ -14,8 +14,7 @@ export const LoginCard = () => {
 
     const email = form.email.value;
     const password = form.password.value;
-    const admin = form.email.checked;
-    const remember = form.email.checked;
+    const admin = form.admin.checked;
 
     authContext.Login(email, password, admin);
   };
@@ -35,10 +34,6 @@ export const LoginCard = () => {
             <input type="checkbox" name="admin" id="admin" />
             <label htmlFor="admin">I'm admin</label>
           </S.IsAdmin>
-          <S.RememberMe>
-            <input type="checkbox" name="remember" id="remember" />
-            <label htmlFor="remember">Remember me</label>
-          </S.RememberMe>
         </S.OptionButtonGroup>
         <S.Button>
           <button type="submit">Login</button>

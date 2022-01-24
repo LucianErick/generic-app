@@ -36,8 +36,8 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const Logout = async () => {
     setUser(null);
 
-    sessionStorage.removeItem("@App:user")
-    sessionStorage.removeItem("@App:token")
+    localStorage.removeItem("@App:user")
+    localStorage.removeItem("@App:token")
   }
 
   useEffect(() => {
