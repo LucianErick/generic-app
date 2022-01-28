@@ -5,6 +5,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { toast } from "react-toastify";
 import { api, authenticate } from "../services/api";
 import { User } from "../types/User";
 
@@ -25,20 +26,24 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [user, setUser] = useState<User | null>(null);
 
   const Login = async (email: string, password: string, admin: boolean) => {
-    const response = await authenticate(email, password, admin);
-    setUser(response.user);
+    try {
+      const response = await authenticate(email, password, admin);
+      setUser(response.user);
 
-    localStorage.setItem("@App:user", JSON.stringify(response.user));
-    localStorage.setItem("@App:token", response.token);
-    api.defaults.headers.common["Authorization"] = `Bearer ${response.token}`;
+      localStorage.setItem("@App:user", JSON.stringify(response.user));
+      localStorage.setItem("@App:token", response.token);
+      api.defaults.headers.common["Authorization"] = `Bearer ${response.token}`;
+    } catch (err) {
+      toast.error("Please check your credentials and try again.");
+    }
   };
 
   const Logout = async () => {
     setUser(null);
 
-    localStorage.removeItem("@App:user")
-    localStorage.removeItem("@App:token")
-  }
+    localStorage.removeItem("@App:user");
+    localStorage.removeItem("@App:token");
+  };
 
   useEffect(() => {
     const storagedUser = localStorage.getItem("@App:user");
@@ -51,7 +56,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signed: Boolean(user), Login, Logout, user }}>
+    <AuthContext.Provider
+      value={{ signed: Boolean(user), Login, Logout, user }}
+    >
       {children}
     </AuthContext.Provider>
   );

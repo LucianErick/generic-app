@@ -22,17 +22,17 @@ class Attendance {
 
   @Column()
   user_id: string;
-
+  
   @OneToOne(() => Service)
   @JoinColumn({ name: "service_id" })
   service: Service;
 
   @Column()
   service_id: string;
-
+  
   @Column({ type: "timestamp" })
   start: Date;
-
+  
   @CreateDateColumn()
   created_at: Date;
 

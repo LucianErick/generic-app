@@ -4,7 +4,7 @@ export const Home = () => {
   const auth = useAuth();
   return (
     <>
-      You're logged!
+      You're logged, {`${auth.user?.name}`}!
       <br />
       <button onClick={auth.Logout}>Logout</button>
     </>
