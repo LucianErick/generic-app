@@ -22,6 +22,11 @@ export class CreateAttendance1643306260331 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: "start",
+            type: "timestamp",
+            isNullable: false,
+          },
+          {
             name: "created_at",
             type: "timestamp",
             default: "now()",
