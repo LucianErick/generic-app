@@ -25,6 +25,32 @@ class WorkController {
       });
     }
   }
+
+  async filterByCategory(req: Request, res: Response) {
+    const { name } = req.params;
+
+    const workService = new WorkService();
+
+    try {
+      const services = await workService.filterByCategory(name);
+      return res.json(services);
+    } catch (err) {
+      return res.status(400).json({
+        message: getErrorMessage(err),
+      });
+    }
+  }
+
+  async listServices(req: Request, res: Response) {
+    const workService = new WorkService();
+
+    try {
+      const services = await workService.listServices();
+      return res.json(services);
+    } catch (err) {
+      return res.status(409);
+    }
+  }
 }
 
 export default new WorkController();

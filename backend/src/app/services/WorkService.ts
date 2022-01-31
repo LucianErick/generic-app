@@ -1,4 +1,4 @@
-import { getRepository } from "typeorm";
+import { getRepository, Repository } from "typeorm";
 import { Category } from "../models/Category";
 import { Service } from "../models/Service";
 
@@ -43,6 +43,31 @@ class WorkService {
     });
 
     await repository.save(service);
+  }
+
+  async filterByCategory(name: string) {
+    const categoryRepository = getRepository(Category);
+    const serviceRepository = getRepository(Service);
+
+    const category = await categoryRepository.findOne({
+      where: [{ name: name }],
+    });
+
+    if (!category) {
+      throw new Error("Category was not found");
+    }
+
+    const list = await serviceRepository.find({
+      where: [{ category_id: category.id }],
+    });
+
+    return list;
+  }
+
+  async listServices() {
+    const serviceRepository = getRepository(Service);
+    const services = serviceRepository.find();
+    return services;
   }
 }
 

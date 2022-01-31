@@ -15,6 +15,9 @@ router.get("/users", authMiddleware, UserController.index);
 
 // Service
 router.post("/services", WorkController.store)
+router.get("/services", WorkController.listServices)
+router.get("/services/:name", WorkController.filterByCategory)
+
 
 // Category
 router.post("/categories", CategoryController.store)
